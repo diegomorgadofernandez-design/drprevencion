@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DR Prevención — Expertos en Seguridad Industrial</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --amarillo: #F5C300;
+    --negro: #0E0E0E;
+    --gris-oscuro: #1A1A1A;
+    --gris-medio: #2C2C2C;
+    --gris-claro: #6B6B6B;
+    --blanco: #F5F5F0;
+    --rojo: #D63031;
+    --acento: #F5C300;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--negro);
+    color: var(--blanco);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─────────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(14,14,14,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--amarillo);
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.1em;
+    color: var(--amarillo);
+  }
+  .logo span { color: var(--blanco); }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav ul a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blanco);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--amarillo); }
+  .nav-cta {
+    background: var(--amarillo);
+    color: var(--negro) !important;
+    padding: 0.5rem 1.4rem;
+    font-weight: 700 !important;
+  }
+  .nav-cta:hover { background: #e0b200; color: var(--negro) !important; }
+
+  /* ─── HERO ────────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 4rem 4rem 5rem;
+    position: relative; z-index: 2;
+  }
+  .hero-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--amarillo);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block; width: 40px; height: 2px;
+    background: var(--amarillo);
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 6vw, 6rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    color: var(--blanco);
+    margin-bottom: 1.5rem;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--amarillo);
+    display: block;
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: #bbb;
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-badges {
+    display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 2.5rem;
+  }
+  .badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid #444;
+    padding: 0.35rem 0.9rem;
+    color: #ccc;
+  }
+  .badge.highlight { border-color: var(--amarillo); color: var(--amarillo); }
+  .hero-btns { display: flex; gap: 1rem; }
+  .btn-primary {
+    background: var(--amarillo);
+    color: var(--negro);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 1rem 2.2rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: #e0b200; transform: translateY(-2px); }
+  .btn-secondary {
+    border: 2px solid #444;
+    color: var(--blanco);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 1rem 2.2rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--amarillo); color: var(--amarillo); }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, var(--negro) 0%, transparent 35%),
+                linear-gradient(to bottom, transparent 60%, var(--negro) 100%);
+    z-index: 1;
+  }
+  .hero-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%) brightness(0.7);
+  }
+  .hero-stat-strip {
+    position: absolute; bottom: 3rem; left: 5rem; right: 2rem;
+    display: flex; gap: 3rem; z-index: 3;
+  }
+  .stat { text-align: left; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--amarillo);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #888;
+    margin-top: 0.2rem;
+  }
+
+  /* ─── SECCIÓN GENÉRICA ────────────────────────────────── */
+  section { padding: 6rem 5rem; }
+  .section-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--amarillo);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .section-tag::before {
+    content: '';
+    display: block; width: 30px; height: 2px;
+    background: var(--amarillo);
+  }
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--blanco);
+    margin-bottom: 1rem;
+  }
+  h2 span { color: var(--amarillo); }
+  .section-intro {
+    font-size: 1rem;
+    color: #999;
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  /* ─── SERVICIOS PRINCIPALES ──────────────────────────── */
+  #servicios { background: var(--gris-oscuro); }
+  .servicios-header { margin-bottom: 4rem; }
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid #333;
+  }
+  .servicio-card {
+    padding: 2.5rem;
+    border-right: 1px solid #333;
+    border-bottom: 1px solid #333;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .servicio-card:hover { background: var(--gris-medio); }
+  .servicio-card:nth-child(3n) { border-right: none; }
+  .servicio-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: #2a2a2a;
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+    line-height: 1;
+    transition: color 0.3s;
+  }
+  .servicio-card:hover .servicio-num { color: #333; }
+  .servicio-icon {
+    width: 48px; height: 48px;
+    background: var(--amarillo);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+  }
+  .servicio-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--blanco);
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+  }
+  .servicio-card p {
+    font-size: 0.9rem;
+    color: #888;
+    line-height: 1.6;
+  }
+  .servicio-tag {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amarillo);
+    border-bottom: 1px solid var(--amarillo);
+    padding-bottom: 0.1rem;
+  }
+
+  /* ─── DECRETO 44 ──────────────────────────────────────── */
+  #decreto44 { background: var(--negro); }
+  .decreto-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 4rem;
+  }
+  .decreto-col h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amarillo);
+    padding: 0.8rem 1rem;
+    border-left: 3px solid var(--amarillo);
+    background: rgba(245,195,0,0.05);
+    margin-bottom: 1.5rem;
+  }
+  .doc-list { list-style: none; }
+  .doc-list li {
+    display: flex; align-items: flex-start; gap: 0.8rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #222;
+    font-size: 0.9rem;
+    color: #bbb;
+    line-height: 1.4;
+  }
+  .doc-list li:last-child { border-bottom: none; }
+  .doc-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    color: var(--amarillo);
+    min-width: 28px;
+    line-height: 1.4;
+  }
+
+  /* ─── PLATAFORMAS ─────────────────────────────────────── */
+  #plataformas { background: var(--gris-oscuro); }
+  .plataformas-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 4rem;
+  }
+  .plataformas-list {
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .plataforma-item {
+    display: flex; align-items: center; gap: 1.5rem;
+    padding: 1.2rem 1.5rem;
+    border: 1px solid #333;
+    background: var(--negro);
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .plataforma-item:hover {
+    border-color: var(--amarillo);
+    transform: translateX(6px);
+  }
+  .plat-icon {
+    width: 44px; height: 44px;
+    background: var(--amarillo);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .plat-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--blanco);
+    letter-spacing: 0.05em;
+  }
+  .plat-desc {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 0.1rem;
+  }
+  .plataformas-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .pv-card {
+    aspect-ratio: 1;
+    background: var(--gris-medio);
+    border: 1px solid #333;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 1.5rem;
+    transition: all 0.2s;
+  }
+  .pv-card:hover { border-color: var(--amarillo); }
+  .pv-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--amarillo);
+    line-height: 1;
+  }
+  .pv-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #888;
+    margin-top: 0.4rem;
+  }
+  .pv-card.highlight-card {
+    background: var(--amarillo);
+    border-color: var(--amarillo);
+    grid-column: span 2;
+    aspect-ratio: auto;
+    padding: 2rem;
+  }
+  .pv-card.highlight-card .pv-big { color: var(--negro); font-size: 3rem; }
+  .pv-card.highlight-card .pv-label { color: var(--negro); opacity: 0.7; }
+
+  /* ─── FISCALIZACIONES ─────────────────────────────────── */
+  #fiscalizaciones {
+    background: var(--negro);
+    border-top: 2px solid var(--amarillo);
+  }
+  .fisc-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    margin-top: 4rem;
+    align-items: start;
+  }
+  .fisc-card {
+    border: 1px solid #333;
+    padding: 2.5rem;
+    position: relative;
+    background: var(--gris-oscuro);
+  }
+  .fisc-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--amarillo);
+  }
+  .fisc-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blanco);
+    margin-bottom: 1rem;
+  }
+  .fisc-card p { font-size: 0.9rem; color: #999; line-height: 1.7; }
+  .fisc-steps { margin-top: 1.5rem; }
+  .fisc-step {
+    display: flex; gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #2a2a2a;
+  }
+  .fisc-step:last-child { border-bottom: none; }
+  .step-n {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--amarillo);
+    line-height: 1.2;
+    min-width: 24px;
+  }
+  .step-text { font-size: 0.85rem; color: #aaa; line-height: 1.5; }
+
+  /* ─── GALERÍA EPP ─────────────────────────────────────── */
+  #epp { background: var(--gris-oscuro); }
+  .epp-header { margin-bottom: 3rem; }
+  .epp-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .epp-item {
+    position: relative; overflow: hidden;
+    background: var(--gris-medio);
+    border: 1px solid #333;
+  }
+  .epp-item img {
+    width: 100%; aspect-ratio: 1;
+    object-fit: cover;
+    filter: grayscale(20%);
+    transition: all 0.3s;
+    display: block;
+  }
+  .epp-item:hover img { filter: grayscale(0%); transform: scale(1.03); }
+  .epp-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+    padding: 1.2rem 1rem 1rem;
+  }
+  .epp-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amarillo);
+  }
+
+  /* ─── CTA FINAL ───────────────────────────────────────── */
+  #contacto {
+    background: var(--amarillo);
+    padding: 6rem 5rem;
+    text-align: center;
+  }
+  #contacto .section-tag { justify-content: center; color: var(--negro); }
+  #contacto .section-tag::before { background: var(--negro); }
+  #contacto h2 { color: var(--negro); }
+  #contacto .section-intro { color: #333; margin: 1rem auto 2.5rem; }
+  .contact-cards {
+    display: flex; justify-content: center; gap: 2rem;
+    flex-wrap: wrap; margin-top: 3rem;
+  }
+  .contact-card {
+    background: var(--negro);
+    padding: 2rem 2.5rem;
+    text-align: left;
+    min-width: 220px;
+  }
+  .cc-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #777;
+    margin-bottom: 0.4rem;
+  }
+  .cc-value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--amarillo);
+  }
+
+  /* ─── FOOTER ──────────────────────────────────────────── */
+  footer {
+    background: var(--negro);
+    border-top: 1px solid #222;
+    padding: 2rem 5rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer p { font-size: 0.8rem; color: #555; }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: #444;
+    letter-spacing: 0.1em;
+  }
+
+  /* ─── STRIPE DECORATIVA ───────────────────────────────── */
+  .stripe {
+    height: 6px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--amarillo) 0px, var(--amarillo) 30px,
+      var(--negro) 30px, var(--negro) 40px
+    );
+  }
+
+  /* ─── RESPONSIVE ──────────────────────────────────────── */
+  @media(max-width:900px){
+    nav { padding: 1rem 2rem; }
+    nav ul { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 7rem 2rem 3rem; }
+    section { padding: 4rem 2rem; }
+    .servicios-grid { grid-template-columns: 1fr 1fr; }
+    .decreto-layout, .plataformas-inner, .fisc-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .epp-grid { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .hero-stat-strip { left: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">DR<span>Prevención</span></div>
+  <ul>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#decreto44">D.S. N°44</a></li>
+    <li><a href="#plataformas">Acreditación</a></li>
+    <li><a href="#fiscalizaciones">Fiscalizaciones</a></li>
+    <li><a href="#contacto" class="nav-cta">Cotizar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Experto en Prevención de Riesgos · Chile</div>
+    <h1>Cumplimiento <em>normativo sin complicaciones</em></h1>
+    <p class="hero-sub">
+      Asesoría integral en seguridad y salud ocupacional para empresas contratistas y subcontratistas.
+      Documentación, acreditación en plataformas y respuesta a fiscalizaciones.
+    </p>
+    <div class="hero-badges">
+      <span class="badge highlight">Ley 16.744</span>
+      <span class="badge">D.S. N°44</span>
+      <span class="badge">D.S. 76</span>
+      <span class="badge">D.S. 594</span>
+
+    </div>
+    <div class="hero-btns">
+      <a href="#servicios" class="btn-primary">Ver Servicios</a>
+      <a href="#contacto" class="btn-secondary">Solicitar Cotización</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <!-- Imagen representativa de seguridad industrial via Unsplash (libre uso) -->
+    <img class="hero-img"
+         src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=900&auto=format&fit=crop&q=80"
+         alt="Seguridad Industrial">
+  </div>
+</section>
+
+<!-- STAT STRIP sobre el hero -->
+<div class="hero-stat-strip" style="position:relative;display:flex;gap:3rem;padding:3rem 5rem;background:var(--gris-oscuro);border-top:2px solid #222;">
+  <div class="stat">
+    <div class="stat-num">29+</div>
+    <div class="stat-label">Documentos DS N°44</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">3+</div>
+    <div class="stat-label">Plataformas de Acreditación</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Cumplimiento Normativo</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num" style="font-size:2rem;">A convenir</div>
+    <div class="stat-label">Con el Cliente</div>
+  </div>
+</div>
+
+<div class="stripe"></div>
+
+<!-- SERVICIOS PRINCIPALES -->
+<section id="servicios">
+  <div class="servicios-header">
+    <div class="section-tag">Lo que hacemos</div>
+    <h2>Servicios de <span>Prevención</span></h2>
+    <p class="section-intro">Soluciones documentales y de gestión SST diseñadas para contratistas y empresas que operan bajo regímenes de subcontratación.</p>
+  </div>
+
+  <div class="servicios-grid">
+    <!-- 1 -->
+    <div class="servicio-card">
+      <div class="servicio-num">01</div>
+      <div class="servicio-icon">📋</div>
+      <h3>Carpeta de Arranque D.S. N°44</h3>
+      <p>Elaboración completa de la carpeta documental exigida para el ingreso de contratistas a faenas: 29 documentos organizados por empresa y trabajador.</p>
+      <span class="servicio-tag">Gestión Documental</span>
+    </div>
+    <!-- 2 -->
+    <div class="servicio-card">
+      <div class="servicio-num">02</div>
+      <div class="servicio-icon">🔄</div>
+      <h3>Actualización de Documentación</h3>
+      <p>Revisión y actualización periódica de todos los documentos SST bajo el Decreto N°44: matrices de riesgo, reglamentos, procedimientos y protocolos vigentes.</p>
+      <span class="servicio-tag">Actualización Normativa</span>
+    </div>
+    <!-- 3 -->
+    <div class="servicio-card">
+      <div class="servicio-num">03</div>
+      <div class="servicio-icon">🏆</div>
+      <h3>Acreditación en Plataformas</h3>
+      <p>Gestión de acreditación documental en Pronexo, ASEM, Zerty y otras plataformas de subcontratación utilizadas por mandantes del sector productivo chileno.</p>
+      <span class="servicio-tag">Subcontratación</span>
+    </div>
+    <!-- 4 -->
+    <div class="servicio-card">
+      <div class="servicio-num">04</div>
+      <div class="servicio-icon">⚖️</div>
+      <h3>Sumarios y Fiscalizaciones</h3>
+      <p>Respuesta técnica a sumarios de la Dirección del Trabajo y prescripciones emitidas por mutualidades (ACHS, IST, Mutual de Seguridad), con defensa documental completa.</p>
+      <span class="servicio-tag">Defensa Normativa</span>
+    </div>
+    <!-- 5 -->
+    <div class="servicio-card">
+      <div class="servicio-num">05</div>
+      <div class="servicio-icon">🦺</div>
+      <h3>Programa Preventivo Anual</h3>
+      <p>Diseño del Programa de Trabajo Preventivo con cronograma de capacitaciones, indicadores de gestión y seguimiento mensual de actividades SST.</p>
+      <span class="servicio-tag">Planificación SST</span>
+    </div>
+    <!-- 6 -->
+    <div class="servicio-card">
+      <div class="servicio-num">06</div>
+      <div class="servicio-icon">📚</div>
+      <h3>Capacitación y Difusión</h3>
+      <p>Desarrollo y registro de capacitaciones en uso de EPP, control de riesgos, manejo de emergencias y difusión de procedimientos y protocolos laborales.</p>
+      <span class="servicio-tag">Formación Laboral</span>
+    </div>
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+<!-- DECRETO 44 -->
+<section id="decreto44">
+  <div class="section-tag">Documentación Completa</div>
+  <h2>Carpeta <span>D.S. N°44</span></h2>
+  <p class="section-intro">Elaboramos los 29 documentos exigidos por el Decreto Supremo N°44 para que su empresa ingrese a faenas sin observaciones.</p>
+
+  <div class="decreto-layout">
+    <div class="decreto-col">
+      <h3>📁 Documentos Empresa</h3>
+      <ul class="doc-list">
+        <li><span class="doc-num">01</span> Reglamento Interno de Orden, Higiene y Seguridad</li>
+        <li><span class="doc-num">02</span> Cartas de Ingreso RIOHS ante la SEREMI y DT</li>
+        <li><span class="doc-num">03</span> Programa de Trabajo Preventivo</li>
+        <li><span class="doc-num">06</span> Cronograma de capacitaciones</li>
+        <li><span class="doc-num">07</span> Procedimiento de Trabajo Seguro según labores</li>
+        <li><span class="doc-num">08</span> Procedimiento en caso de accidentes</li>
+        <li><span class="doc-num">09</span> Matriz de Riesgos (MIPER según DS 44)</li>
+        <li><span class="doc-num">10</span> Política de Seguridad y Salud en el Trabajo</li>
+        <li><span class="doc-num">11</span> Protocolo de Prevención del Acoso Sexual y Laboral</li>
+        <li><span class="doc-num">12</span> Procedimiento de Investigación y Sanción de Acoso</li>
+        <li><span class="doc-num">13</span> Política de Prevención de Consumo de Alcohol y Drogas</li>
+      </ul>
+    </div>
+    <div class="decreto-col">
+      <h3>👷 Documentos Trabajador</h3>
+      <ul class="doc-list">
+        <li><span class="doc-num">16</span> IRL – Información de Riesgos Laborales</li>
+        <li><span class="doc-num">17</span> Registro entrega de Reglamento Interno</li>
+        <li><span class="doc-num">18</span> Registro entrega de Elementos de Protección Personal</li>
+        <li><span class="doc-num">19</span> Difusión Procedimiento de Trabajo Seguro</li>
+        <li><span class="doc-num">20</span> Difusión Matriz de Riesgos</li>
+        <li><span class="doc-num">21</span> Difusión Política SST</li>
+        <li><span class="doc-num">22</span> Difusión Política de Alcohol y Drogas</li>
+        <li><span class="doc-num">23</span> Difusión Protocolo Acoso Laboral y Sexual</li>
+        <li><span class="doc-num">24</span> Difusión Procedimiento de Investigación y Sanción</li>
+        <li><span class="doc-num">25</span> Capacitación uso de extintores</li>
+        <li><span class="doc-num">26</span> Capacitación uso de EPP</li>
+        <li><span class="doc-num">27</span> Capacitación en caso de accidentes</li>
+        <li><span class="doc-num">28</span> Capacitación control de riesgos laborales</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PLATAFORMAS -->
+<section id="plataformas">
+  <div class="section-tag">Acreditación Documental</div>
+  <h2>Plataformas de <span>Subcontratación</span></h2>
+  <p class="section-intro">Gestionamos la carga, validación y mantención de sus documentos en las principales plataformas de gestión de contratistas del mercado chileno.</p>
+
+  <div class="plataformas-inner">
+    <div class="plataformas-list">
+      <div class="plataforma-item">
+        <div class="plat-icon">🔷</div>
+        <div>
+          <div class="plat-name">PRONEXO</div>
+          <div class="plat-desc">Plataforma líder en gestión documental de subcontratistas</div>
+        </div>
+      </div>
+      <div class="plataforma-item">
+        <div class="plat-icon">🔶</div>
+        <div>
+          <div class="plat-name">ASEM</div>
+          <div class="plat-desc">Sistema de acreditación para empresas contratistas y proveedores</div>
+        </div>
+      </div>
+      <div class="plataforma-item">
+        <div class="plat-icon">🟢</div>
+        <div>
+          <div class="plat-name">ZERTY</div>
+          <div class="plat-desc">Gestión de cumplimiento normativo y documental en línea</div>
+        </div>
+      </div>
+      <div class="plataforma-item">
+        <div class="plat-icon">🔵</div>
+        <div>
+          <div class="plat-name">CERTILAP</div>
+          <div class="plat-desc">Plataforma de acreditación documental para contratistas</div>
+        </div>
+      </div>
+      <div class="plataforma-item">
+        <div class="plat-icon">⚙️</div>
+        <div>
+          <div class="plat-name">Otras Plataformas</div>
+          <div class="plat-desc">Trabajamos con cualquier sistema de gestión de mandantes</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="plataformas-visual">
+      <div class="pv-card">
+        <div class="pv-big">D.S.</div>
+        <div class="pv-label">N°44</div>
+      </div>
+      <div class="pv-card">
+        <div class="pv-big">D.S.</div>
+        <div class="pv-label">N°76</div>
+      </div>
+      <div class="pv-card">
+        <div class="pv-big">LEY</div>
+        <div class="pv-label">16.744</div>
+      </div>
+      <div class="pv-card">
+        <div class="pv-big">D.S.</div>
+        <div class="pv-label">N°594</div>
+      </div>
+      <div class="pv-card highlight-card">
+        <div class="pv-big" style="color:var(--negro)">✓ EMPRESA ACREDITADA</div>
+        <div class="pv-label" style="color:var(--negro);opacity:0.6;">Documentación completa y vigente ante el mandante</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+<!-- FISCALIZACIONES -->
+<section id="fiscalizaciones">
+  <div class="section-tag">Defensa Normativa</div>
+  <h2>Sumarios y <span>Prescripciones</span></h2>
+  <p class="section-intro">Respondemos técnica y documentalmente ante fiscalizaciones de la Inspección del Trabajo y prescripciones de las mutualidades, protegiendo a su empresa.</p>
+
+  <div class="fisc-layout">
+    <div class="fisc-card">
+      <h3>🏛️ Sumarios de la DT</h3>
+      <p>Elaboramos la defensa técnica ante sumarios de la Dirección del Trabajo, recopilando y organizando toda la documentación de descargo conforme a la normativa vigente.</p>
+      <div class="fisc-steps">
+        <div class="fisc-step">
+          <div class="step-n">1</div>
+          <div class="step-text">Análisis del cargo y normativa aplicable</div>
+        </div>
+        <div class="fisc-step">
+          <div class="step-n">2</div>
+          <div class="step-text">Levantamiento de antecedentes y registros de descargo</div>
+        </div>
+        <div class="fisc-step">
+          <div class="step-n">3</div>
+          <div class="step-text">Redacción y presentación de descargos ante la DT</div>
+        </div>
+        <div class="fisc-step">
+          <div class="step-n">4</div>
+          <div class="step-text">Seguimiento hasta resolución del sumario</div>
+        </div>
+      </div>
+    </div>
+    <div class="fisc-card">
+      <h3>🏥 Prescripciones de Mutualidades</h3>
+      <p>Gestionamos la respuesta a prescripciones emitidas por ACHS, IST y Mutual de Seguridad, verificando el cumplimiento en terreno y la generación de los registros exigidos.</p>
+      <div class="fisc-steps">
+        <div class="fisc-step">
+          <div class="step-n">1</div>
+          <div class="step-text">Revisión de la prescripción y plazos exigidos</div>
+        </div>
+        <div class="fisc-step">
+          <div class="step-n">2</div>
+          <div class="step-text">Verificación de correcciones en terreno</div>
+        </div>
+        <div class="fisc-step">
+          <div class="step-n">3</div>
+          <div class="step-text">Generación de registros fotográficos y documentales</div>
+        </div>
+        <div class="fisc-step">
+          <div class="step-n">4</div>
+          <div class="step-text">Respuesta formal a la mutualidad dentro del plazo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GESTIÓN MUTUALIDADES -->
+<section id="mutualidades" style="background:var(--negro);">
+  <div class="section-tag">Salud Ocupacional</div>
+  <h2>Gestión con <span>Mutualidades</span></h2>
+  <p class="section-intro">Gestionamos de forma integral la relación de su empresa con las mutualidades, coordinando trámites, exámenes y cumplimiento de protocolos de salud ocupacional.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;">
+    <div class="fisc-card">
+      <h3>🏢 Afiliación a Mutualidad</h3>
+      <p>Tramitamos la afiliación de su empresa a ACHS, IST o Mutual de Seguridad, gestionando toda la documentación requerida para la incorporación al sistema de seguro de accidentes.</p>
+    </div>
+    <div class="fisc-card">
+      <h3>🩺 Exámenes Pre-Ocupacionales</h3>
+      <p>Coordinamos y gestionamos las horas para exámenes pre-ocupacionales y periódicos del personal, asegurando el cumplimiento de los requisitos de aptitud laboral.</p>
+    </div>
+    <div class="fisc-card">
+      <h3>📋 Capacitaciones</h3>
+      <p>Coordinamos capacitaciones en materias de seguridad y salud laboral a través de las mutualidades, aprovechando los recursos disponibles para su empresa.</p>
+    </div>
+    <div class="fisc-card">
+      <h3>🧪 Protocolos MINSAL</h3>
+      <p>Implementamos y gestionamos los protocolos MINSAL aplicables: MMC, TMERT, PREXOR, RUVS y Riesgo Psicosocial, asegurando el cumplimiento normativo en salud ocupacional.</p>
+    </div>
+    <div class="fisc-card">
+      <h3>🏭 Higiene Industrial</h3>
+      <p>Coordinamos evaluaciones de higiene industrial con las mutualidades: medición de ruido, agentes químicos, iluminación y otros factores de riesgo presentes en el ambiente laboral.</p>
+    </div>
+    <div class="fisc-card">
+      <h3>📑 Gestión Integral SSO</h3>
+      <p>Administramos la relación continua con la mutualidad: reportes de accidentes, seguimiento de casos, respuesta a prescripciones y coordinación de actividades preventivas.</p>
+    </div>
+  </div>
+</section>
+
+<div class="stripe"></div>
+
+<!-- CONTACTO / CTA -->
+<section id="contacto">
+  <div class="section-tag">Trabajemos juntos</div>
+  <h2>¿Su empresa necesita cumplir con el <span style="color:var(--negro);text-decoration:underline;text-decoration-color:rgba(0,0,0,0.3)">D.S. N°44</span>?</h2>
+  <p class="section-intro">Solicite su cotización sin compromiso. Elaboramos propuesta en 24 horas hábiles.</p>
+  <div class="hero-btns" style="justify-content:center;margin-top:2rem;">
+    <a href="mailto:contacto@rbprevencion.cl" class="btn-primary" style="background:var(--negro);color:var(--amarillo);">Solicitar Cotización</a>
+    <a href="https://wa.me/56931099609" class="btn-secondary" style="border-color:var(--negro);color:var(--negro);">Escribir por WhatsApp</a>
+  </div>
+
+  <div class="contact-cards">
+    <div class="contact-card">
+      <div class="cc-label">Especialidad</div>
+      <div class="cc-value">Profesionales de la Seguridad Industrial</div>
+    </div>
+    <div class="contact-card">
+      <div class="cc-label">Cobertura</div>
+      <div class="cc-value">Zona Sur · Industria Acuicultura</div>
+    </div>
+    <div class="contact-card">
+      <div class="cc-label">Marco Normativo</div>
+      <div class="cc-value">Ley 16.744 · D.S. 44 · D.S. 76</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">DR PREVENCIÓN</div>
+  <p>© 2026 DR Prevención · Expertos en Seguridad Industrial · Zona Sur de Chile</p>
+  <p style="color:#333;">Registro Nacional de Profesionales</p>
+</footer>
+
+</body>
+</html>
